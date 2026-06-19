@@ -10,11 +10,6 @@ export default function App() {
 
   return (
     <div className="app">
-      <div className="ambient" aria-hidden>
-        <div className="ambient__blob ambient__blob--1" />
-        <div className="ambient__blob ambient__blob--2" />
-        <div className="ambient__blob ambient__blob--3" />
-      </div>
       <Board onMount={setEditor} />
       {editor && (
         <Chrome

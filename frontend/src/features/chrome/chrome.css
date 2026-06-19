@@ -12,13 +12,8 @@
   z-index: 1;
 }
 
-/* Translucent tinted veil: lets the ambient gradient wash through as soft
-   pastel color while keeping ink readable on top. */
 .board .tl-container {
-  background: rgba(248, 249, 255, 0.6);
-}
-.board .tl-background {
-  background: transparent !important;
+  background: var(--canvas);
 }
 
 /* ============ Top bar ============ */
@@ -32,13 +27,11 @@
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  padding: 0 var(--space-4) 0 var(--space-5);
-  border-radius: var(--radius-xl);
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-2);
+  padding: 0 var(--space-3) 0 var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-1);
 }
 
 .topbar__left {
@@ -53,18 +46,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   flex: 0 0 auto;
   border-radius: var(--radius-sm);
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   color: #fff;
-  box-shadow: 0 4px 12px var(--accent-ring);
 }
 
 .topbar__title {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--text);
   border: 1px solid transparent;
@@ -73,21 +65,22 @@
   max-width: 320px;
   background: transparent;
   outline: none;
-  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
 }
 .topbar__title:hover {
   background: var(--control-hover);
 }
 .topbar__title:focus {
   border-color: var(--accent);
-  background: var(--glass-bg-strong);
-  box-shadow: 0 0 0 4px var(--accent-soft);
+  background: #fff;
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .topbar__right {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-2);
   flex: 0 0 auto;
 }
 
@@ -96,17 +89,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-sm);
   color: var(--text-muted);
-  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
-    transform var(--dur) var(--ease);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 .icon-button:hover:not(:disabled) {
   background: var(--control-hover);
   color: var(--text);
-}
-.icon-button:active:not(:disabled) {
-  transform: scale(0.92);
 }
 .icon-button:disabled {
   opacity: 0.32;
@@ -125,42 +114,34 @@
   gap: var(--space-1);
   padding: var(--space-2);
   border-radius: var(--radius-lg);
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-3);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-2);
 }
 
 .tool-button {
-  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius-md);
   color: var(--text-muted);
-  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
-    transform var(--dur) var(--ease);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 .tool-button:hover {
   background: var(--control-hover);
   color: var(--text);
 }
-.tool-button:active {
-  transform: scale(0.92);
-}
 .tool-button.is-active {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  background: var(--accent);
   color: #fff;
-  box-shadow: 0 6px 16px var(--accent-ring);
 }
 
 /* ============ Color picker ============ */
 .color-picker {
   position: absolute;
-  left: calc(var(--space-4) + 78px);
+  left: calc(var(--space-4) + 70px);
   top: 50%;
   transform: translateY(-50%);
   z-index: 9;
@@ -169,29 +150,23 @@
   gap: var(--space-2);
   padding: var(--space-2);
   border-radius: var(--radius-lg);
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-3);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-2);
 }
 
 .swatch {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 1px 3px rgba(20, 22, 40, 0.2);
-  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  border: 1px solid rgba(20, 22, 40, 0.1);
+  transition: transform var(--dur) var(--ease);
 }
 .swatch:hover {
   transform: scale(1.15);
 }
-.swatch:active {
-  transform: scale(0.92);
-}
 .swatch.is-active {
-  box-shadow: 0 0 0 2px var(--glass-bg), 0 0 0 4px var(--accent);
+  box-shadow: 0 0 0 2px var(--panel), 0 0 0 4px var(--accent);
 }
 
 /* ============ Bottom bar ============ */
@@ -201,8 +176,6 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 9;
-  display: flex;
-  gap: var(--space-3);
 }
 
 .zoom-pill {
@@ -211,11 +184,9 @@
   gap: var(--space-1);
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-pill);
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-3);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-2);
 }
 
 .zoom-pill__value {
