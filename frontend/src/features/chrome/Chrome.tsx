@@ -1,9 +1,11 @@
 import { useCallback } from "react";
-import { type Editor, useValue } from "tldraw";
+import { DefaultColorStyle, type Editor, useValue } from "tldraw";
 import { TopBar } from "./TopBar";
 import { Toolbar } from "./Toolbar";
+import { ColorPicker } from "./ColorPicker";
 import { BottomBar } from "./BottomBar";
 import type { ToolDef } from "../../lib/tools";
+import type { ColorDef } from "../../lib/colors";
 
 interface ChromeProps {
   editor: Editor;
@@ -13,6 +15,7 @@ interface ChromeProps {
 
 export function Chrome({ editor, title, onTitleChange }: ChromeProps) {
   const activeTool = useValue("current tool", () => editor.getCurrentToolId(), [editor]);
+  const activeColor = useValue("color", () => editor.getStyleForNextShape(DefaultColorStyle), [editor]);
   const zoom = useValue("zoom", () => editor.getZoomLevel(), [editor]);
   const canUndo = useValue("can undo", () => editor.getCanUndo(), [editor]);
   const canRedo = useValue("can redo", () => editor.getCanRedo(), [editor]);
@@ -20,6 +23,14 @@ export function Chrome({ editor, title, onTitleChange }: ChromeProps) {
   const handleSelectTool = useCallback(
     (tool: ToolDef) => {
       editor.setCurrentTool(tool.tldrawTool);
+    },
+    [editor],
+  );
+
+  const handleSelectColor = useCallback(
+    (color: ColorDef) => {
+      editor.setStyleForNextShapes(DefaultColorStyle, color.id);
+      editor.setStyleForSelectedShapes(DefaultColorStyle, color.id);
     },
     [editor],
   );
@@ -35,6 +46,7 @@ export function Chrome({ editor, title, onTitleChange }: ChromeProps) {
         canRedo={canRedo}
       />
       <Toolbar activeTool={activeTool} onSelectTool={handleSelectTool} />
+      <ColorPicker activeColor={activeColor} onSelectColor={handleSelectColor} />
       <BottomBar
         zoom={zoom}
         onZoomIn={() => editor.zoomIn()}
