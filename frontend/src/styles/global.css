@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* ---- Ambient gradient backdrop: soft color blobs that the glass refracts ---- */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ambient__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.9;
+  will-change: transform;
+}
+
+.ambient__blob--1 {
+  width: 46vw;
+  height: 46vw;
+  background: var(--blob-1);
+  top: -10vh;
+  left: -6vw;
+  animation: drift1 22s var(--ease) infinite alternate;
+}
+
+.ambient__blob--2 {
+  width: 40vw;
+  height: 40vw;
+  background: var(--blob-2);
+  bottom: -14vh;
+  right: -8vw;
+  animation: drift2 26s var(--ease) infinite alternate;
+}
+
+.ambient__blob--3 {
+  width: 34vw;
+  height: 34vw;
+  background: var(--blob-3);
+  top: 30vh;
+  left: 40vw;
+  animation: drift3 30s var(--ease) infinite alternate;
+}
+
+@keyframes drift1 {
+  to {
+    transform: translate(8vw, 12vh) scale(1.15);
+  }
+}
+@keyframes drift2 {
+  to {
+    transform: translate(-10vw, -8vh) scale(1.1);
+  }
+}
+@keyframes drift3 {
+  to {
+    transform: translate(-6vw, 6vh) scale(0.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient__blob {
+    animation: none;
+  }
+}
