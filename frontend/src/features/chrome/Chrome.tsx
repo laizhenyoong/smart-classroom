@@ -11,9 +11,10 @@ interface ChromeProps {
   editor: Editor;
   title: string;
   onTitleChange: (title: string) => void;
+  onBack: () => void;
 }
 
-export function Chrome({ editor, title, onTitleChange }: ChromeProps) {
+export function Chrome({ editor, title, onTitleChange, onBack }: ChromeProps) {
   const activeTool = useValue("current tool", () => editor.getCurrentToolId(), [editor]);
   const activeColor = useValue("color", () => editor.getStyleForNextShape(DefaultColorStyle), [editor]);
   const zoom = useValue("zoom", () => editor.getZoomLevel(), [editor]);
@@ -48,6 +49,7 @@ export function Chrome({ editor, title, onTitleChange }: ChromeProps) {
       <TopBar
         title={title}
         onTitleChange={onTitleChange}
+        onBack={onBack}
         onUndo={() => editor.undo()}
         onRedo={() => editor.redo()}
         canUndo={canUndo}

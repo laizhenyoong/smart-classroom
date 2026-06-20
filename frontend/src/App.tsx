@@ -1,23 +1,13 @@
 import { useState } from "react";
-import type { Editor } from "tldraw";
-import { Board } from "./features/board/Board";
-import { Chrome } from "./features/chrome/Chrome";
-import { WidgetGenerator } from "./features/widget/WidgetGenerator";
-import "./features/chrome/chrome.css";
+import { BoardView } from "./features/board/BoardView";
+import { Dashboard } from "./features/dashboard/Dashboard";
 
+// A board id means we're in that board; null means the dashboard.
 export default function App() {
-  const [editor, setEditor] = useState<Editor | null>(null);
-  const [title, setTitle] = useState("Untitled Board");
+  const [boardId, setBoardId] = useState<string | null>(null);
 
-  return (
-    <div className="app">
-      <Board onMount={setEditor} />
-      {editor && (
-        <>
-          <Chrome editor={editor} title={title} onTitleChange={setTitle} />
-          <WidgetGenerator editor={editor} />
-        </>
-      )}
-    </div>
-  );
+  if (boardId) {
+    return <BoardView boardId={boardId} onBack={() => setBoardId(null)} />;
+  }
+  return <Dashboard onOpenBoard={setBoardId} />;
 }

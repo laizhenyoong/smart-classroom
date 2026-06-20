@@ -6,14 +6,21 @@ import "../widget/widget.css";
 const shapeUtils = [WidgetShapeUtil];
 
 interface BoardProps {
+  boardId: string;
   onMount: (editor: Editor) => void;
 }
 
 // tldraw's own UI is hidden so our custom chrome can drive the canvas.
-export function Board({ onMount }: BoardProps) {
+// persistenceKey scopes each board's contents to its own local store.
+export function Board({ boardId, onMount }: BoardProps) {
   return (
     <div className="board">
-      <Tldraw hideUi shapeUtils={shapeUtils} onMount={onMount} />
+      <Tldraw
+        hideUi
+        shapeUtils={shapeUtils}
+        persistenceKey={`board-${boardId}`}
+        onMount={onMount}
+      />
     </div>
   );
 }

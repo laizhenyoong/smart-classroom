@@ -86,6 +86,20 @@ export const SparkleIcon = (p: IconProps) => (
   </svg>
 );
 
+// Brand mark: a whiteboard frame with a sparkle inside — "smart whiteboard".
+export const LogoIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <rect x="3" y="4" width="18" height="14" rx="2.5" />
+    <path d="M9 21h6" />
+    <path d="M12 18v3" />
+    <path
+      d="M11 7.5l1 2.6 2.6 1-2.6 1-1 2.6-1-2.6-2.6-1 2.6-1z"
+      fill="currentColor"
+      stroke="none"
+    />
+  </svg>
+);
+
 export const UndoIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M9 7L4 12l5 5" />
@@ -118,5 +132,27 @@ export const PlusIcon = (p: IconProps) => (
 export const MinusIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M5 12h14" />
+  </svg>
+);
+
+export const HomeIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M4 11l8-7 8 7" />
+    <path d="M6 10v10h12V10" />
+  </svg>
+);
+
+export const BoardsIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <rect x="3" y="3" width="7" height="7" rx="1.5" />
+    <rect x="14" y="3" width="7" height="7" rx="1.5" />
+    <rect x="3" y="14" width="7" height="7" rx="1.5" />
+    <rect x="14" y="14" width="7" height="7" rx="1.5" />
+  </svg>
+);
+
+export const ChevronLeftIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M15 6l-6 6 6 6" />
   </svg>
 );

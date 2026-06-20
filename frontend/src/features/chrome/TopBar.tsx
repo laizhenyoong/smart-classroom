@@ -1,9 +1,10 @@
 import { IconButton } from "../../components/IconButton";
-import { RedoIcon, SparkleIcon, TrashIcon, UndoIcon } from "../../components/icons";
+import { ChevronLeftIcon, LogoIcon, RedoIcon, TrashIcon, UndoIcon } from "../../components/icons";
 
 interface TopBarProps {
   title: string;
   onTitleChange: (title: string) => void;
+  onBack: () => void;
   onUndo: () => void;
   onRedo: () => void;
   canUndo: boolean;
@@ -14,6 +15,7 @@ interface TopBarProps {
 export function TopBar({
   title,
   onTitleChange,
+  onBack,
   onUndo,
   onRedo,
   canUndo,
@@ -23,8 +25,11 @@ export function TopBar({
   return (
     <header className="topbar">
       <div className="topbar__left">
+        <IconButton label="Back to dashboard" onClick={onBack}>
+          <ChevronLeftIcon />
+        </IconButton>
         <span className="topbar__brand" aria-hidden>
-          <SparkleIcon width={18} height={18} />
+          <LogoIcon width={18} height={18} />
         </span>
         <input
           className="topbar__title"
