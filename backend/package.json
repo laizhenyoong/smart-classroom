@@ -5,6 +5,11 @@
   "type": "module",
   "description": "Backend for Smart Classroom",
   "scripts": {
-    "dev": "echo \"backend not implemented yet\" && exit 0"
+    "dev": "node --env-file=.env --watch src/server.js",
+    "start": "node --env-file=.env src/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
   }
 }
