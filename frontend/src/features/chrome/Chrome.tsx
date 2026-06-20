@@ -35,6 +35,14 @@ export function Chrome({ editor, title, onTitleChange }: ChromeProps) {
     [editor],
   );
 
+  // Confirm to avoid accidental wipe mid-demo; still undoable.
+  const handleClear = useCallback(() => {
+    const ids = editor.getCurrentPageShapeIds();
+    if (ids.size === 0) return;
+    if (!window.confirm("Clear the whole board?")) return;
+    editor.deleteShapes([...ids]);
+  }, [editor]);
+
   return (
     <>
       <TopBar
@@ -44,6 +52,7 @@ export function Chrome({ editor, title, onTitleChange }: ChromeProps) {
         onRedo={() => editor.redo()}
         canUndo={canUndo}
         canRedo={canRedo}
+        onClear={handleClear}
       />
       <Toolbar activeTool={activeTool} onSelectTool={handleSelectTool} />
       <ColorPicker activeColor={activeColor} onSelectColor={handleSelectColor} />

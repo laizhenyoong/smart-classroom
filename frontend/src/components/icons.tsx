@@ -100,6 +100,15 @@ export const RedoIcon = (p: IconProps) => (
   </svg>
 );
 
+export const TrashIcon = (p: IconProps) => (
+  <svg {...base(p)}>
+    <path d="M4 7h16" />
+    <path d="M10 11v6M14 11v6" />
+    <path d="M5 7l1 13h12l1-13" />
+    <path d="M9 7V4h6v3" />
+  </svg>
+);
+
 export const PlusIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M12 5v14M5 12h14" />

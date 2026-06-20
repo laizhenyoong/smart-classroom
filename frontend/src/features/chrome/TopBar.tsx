@@ -1,5 +1,5 @@
 import { IconButton } from "../../components/IconButton";
-import { RedoIcon, SparkleIcon, UndoIcon } from "../../components/icons";
+import { RedoIcon, SparkleIcon, TrashIcon, UndoIcon } from "../../components/icons";
 
 interface TopBarProps {
   title: string;
@@ -8,6 +8,7 @@ interface TopBarProps {
   onRedo: () => void;
   canUndo: boolean;
   canRedo: boolean;
+  onClear: () => void;
 }
 
 export function TopBar({
@@ -17,6 +18,7 @@ export function TopBar({
   onRedo,
   canUndo,
   canRedo,
+  onClear,
 }: TopBarProps) {
   return (
     <header className="topbar">
@@ -39,6 +41,10 @@ export function TopBar({
         </IconButton>
         <IconButton label="Redo" onClick={onRedo} disabled={!canRedo}>
           <RedoIcon />
+        </IconButton>
+        <span className="topbar__divider" aria-hidden />
+        <IconButton label="Clear board" onClick={onClear}>
+          <TrashIcon />
         </IconButton>
       </div>
     </header>

@@ -62,8 +62,7 @@ export class WidgetShapeUtil extends ShapeUtil<WidgetShape> {
     return (
       <HTMLContainer className="widget" style={{ width: w, height: h }}>
         {status === "ready" ? (
-          // Model-generated HTML runs fully isolated: scripts may execute but
-          // have no access to the parent page (no allow-same-origin).
+          // allow-scripts but NOT allow-same-origin — full isolation from host.
           <iframe
             className="widget__frame"
             srcDoc={html}

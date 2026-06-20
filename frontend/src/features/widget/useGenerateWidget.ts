@@ -6,9 +6,7 @@ import type { WidgetShape } from "./WidgetShape";
 const DEFAULT_W = 480;
 const DEFAULT_H = 360;
 
-// Creates a widget shape immediately in a loading state, then fills in its
-// HTML once generated. The instant placeholder keeps generation feeling
-// responsive, and a failure is just a status change on the same shape.
+// Places a loading widget immediately so the user sees instant feedback.
 export function useGenerateWidget(editor: Editor) {
   return useCallback(
     async (prompt: string, point: VecLike) => {

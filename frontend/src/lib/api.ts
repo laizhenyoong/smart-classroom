@@ -1,13 +1,5 @@
-// Generates a self-contained HTML document for a widget from a prompt.
-//
-// Currently mocked. To use the real backend, replace the body with:
-//   const res = await fetch("/api/generate", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ prompt }),
-//   });
-//   if (!res.ok) throw new Error(`Generate failed: ${res.status}`);
-//   return (await res.json()).html;
+// Mock — swap body to fetch("/api/generate", { method:"POST", body: JSON.stringify({prompt}) })
+// and return (await res.json()).html when the backend is ready.
 export async function generateWidget(prompt: string): Promise<string> {
   await delay(1200);
   return mockWidgetHtml(prompt);

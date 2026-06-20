@@ -8,8 +8,7 @@ interface MenuState {
   page: VecLike;
 }
 
-// tldraw runs with hideUi, so there is no default context menu. We capture the
-// board's contextmenu event, open a prompt popover, and place the widget there.
+// Captures the board's contextmenu (hideUi means no default) to open the generate popover.
 export function WidgetGenerator({ editor }: { editor: Editor }) {
   const [menu, setMenu] = useState<MenuState | null>(null);
   const generate = useGenerateWidget(editor);
