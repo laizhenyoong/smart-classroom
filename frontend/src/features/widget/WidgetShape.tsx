@@ -44,6 +44,7 @@ export class WidgetShapeUtil extends ShapeUtil<WidgetShape> {
   }
 
   override canResize = () => true;
+  override canEdit = () => true;
 
   getGeometry(shape: WidgetShape) {
     return new Rectangle2d({
@@ -59,6 +60,8 @@ export class WidgetShapeUtil extends ShapeUtil<WidgetShape> {
 
   component(shape: WidgetShape) {
     const { w, h, html, status, prompt } = shape.props;
+    // Iframe stays click-through so the shape is draggable; only goes live while editing.
+    const isEditing = this.editor.getEditingShapeId() === shape.id;
     return (
       <HTMLContainer className="widget" style={{ width: w, height: h }}>
         {status === "ready" ? (
@@ -68,6 +71,7 @@ export class WidgetShapeUtil extends ShapeUtil<WidgetShape> {
             srcDoc={html}
             sandbox="allow-scripts"
             title={prompt || "Generated widget"}
+            style={{ pointerEvents: isEditing ? "auto" : "none" }}
           />
         ) : (
           <WidgetSkeleton status={status} prompt={prompt} />

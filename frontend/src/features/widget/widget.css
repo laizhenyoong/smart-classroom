@@ -22,35 +22,40 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
+  gap: var(--space-3);
   padding: var(--space-4);
   text-align: center;
+  background: var(--panel);
 }
 
-.widget__skeleton--loading {
-  background: linear-gradient(100deg, #f1f2f5 30%, #e9eaef 50%, #f1f2f5 70%);
-  background-size: 200% 100%;
-  animation: widget-shimmer 1.4s infinite linear;
-}
-
-@keyframes widget-shimmer {
-  to {
-    background-position: -200% 0;
-  }
-}
-
-.widget__skeleton-icon {
+.widget__skeleton-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  font-weight: 700;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
   color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
 }
-.widget__skeleton--error .widget__skeleton-icon {
+
+.widget__skeleton--loading .widget__skeleton-badge {
+  animation: widget-pulse 1.5s ease-in-out infinite;
+}
+
+.widget__skeleton--error .widget__skeleton-badge {
   background: #e03131;
+}
+
+@keyframes widget-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 var(--accent-soft);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 10px transparent;
+  }
 }
 
 .widget__skeleton-text {
@@ -70,8 +75,39 @@
   white-space: nowrap;
 }
 
+/* Indeterminate progress: a short fill that slides across the track. */
+.widget__skeleton-bar {
+  position: relative;
+  width: 140px;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--control-hover);
+  overflow: hidden;
+}
+
+.widget__skeleton-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 40%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  animation: widget-progress 1.3s ease-in-out infinite;
+}
+
+@keyframes widget-progress {
+  0% {
+    left: -40%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .widget__skeleton--loading {
+  .widget__skeleton--loading .widget__skeleton-badge,
+  .widget__skeleton-bar-fill {
     animation: none;
   }
 }
