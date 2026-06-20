@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Editor } from "tldraw";
 import { Board } from "./features/board/Board";
 import { Chrome } from "./features/chrome/Chrome";
+import { WidgetGenerator } from "./features/widget/WidgetGenerator";
 import "./features/chrome/chrome.css";
 
 export default function App() {
@@ -12,11 +13,10 @@ export default function App() {
     <div className="app">
       <Board onMount={setEditor} />
       {editor && (
-        <Chrome
-          editor={editor}
-          title={title}
-          onTitleChange={setTitle}
-        />
+        <>
+          <Chrome editor={editor} title={title} onTitleChange={setTitle} />
+          <WidgetGenerator editor={editor} />
+        </>
       )}
     </div>
   );

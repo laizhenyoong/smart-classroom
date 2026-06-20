@@ -1,0 +1,127 @@
+.widget {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-2);
+  pointer-events: all;
+}
+
+.widget__frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  background: #fff;
+}
+
+.widget__skeleton {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  text-align: center;
+}
+
+.widget__skeleton--loading {
+  background: linear-gradient(100deg, #f1f2f5 30%, #e9eaef 50%, #f1f2f5 70%);
+  background-size: 200% 100%;
+  animation: widget-shimmer 1.4s infinite linear;
+}
+
+@keyframes widget-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.widget__skeleton-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-weight: 700;
+  color: #fff;
+}
+.widget__skeleton--error .widget__skeleton-icon {
+  background: #e03131;
+}
+
+.widget__skeleton-text {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.widget__skeleton-prompt {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-muted);
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .widget__skeleton--loading {
+    animation: none;
+  }
+}
+
+/* ============ Generate panel ============ */
+.generate-panel__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+}
+
+.generate-panel {
+  position: fixed;
+  z-index: 21;
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-2);
+}
+
+.generate-panel__input {
+  width: 280px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  outline: none;
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.generate-panel__input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.generate-panel__submit {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  transition: opacity var(--dur) var(--ease);
+}
+.generate-panel__submit:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
